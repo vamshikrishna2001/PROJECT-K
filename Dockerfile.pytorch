@@ -1,0 +1,14 @@
+# Use the official PyTorch image from NVIDIA as the base image
+FROM pytorch/pytorch:latest
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Install additional dependencies
+RUN pip install kafka-python transformers torch
+
+# Copy the Kafka consumer script into the container
+COPY pytorchService/llm.py .
+
+# Set the command to run the Kafka consumer script
+CMD ["sleep infinity"]

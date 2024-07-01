@@ -1,4 +1,3 @@
-# docker-compose.yml
 version: '3'
 services:
   producer:
@@ -14,8 +13,18 @@ services:
   consumer:
     build:
       context: .
-      dockerfile: Dockerfile.consumer
-    command: ["sh", "-c", "sleep infinity"]
+      dockerfile: Dockerfile.consumer  # Use the Dockerfile for the consumer
+    command: ["sh", "-c", "sleep infinity"]     
+    depends_on:
+      - kafka
+    networks:
+      - kafka_network
+
+  pytorch:
+    build:
+      context: .
+      dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
+    command: ["/bin/sh", "-c", "sleep infinity"]
     depends_on:
       - kafka
     networks:
@@ -46,3 +55,4 @@ services:
 networks:
   kafka_network:
     driver: bridge
+
