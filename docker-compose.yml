@@ -4,7 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.producer
-    command: ["sh", "-c", "sleep infinity"]
+        # command: ["sh", "-c", "sleep infinity"]
+    command: ["./producerbinary"]
     depends_on:
       - kafka
     networks:
@@ -14,7 +15,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.consumer  # Use the Dockerfile for the consumer
-    command: ["sh", "-c", "sleep infinity"]     
+    command: ["./consumerbinary"]     
     depends_on:
       - kafka
     networks:

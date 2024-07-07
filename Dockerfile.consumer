@@ -10,10 +10,11 @@ COPY ./Consumer .
 # Download dependencies
 RUN go mod download
 
-# RUN go build -o consumerbinary main.go
+RUN go build -o consumerbinary main.go
 
 # # Ensure the binary has executable permissions
-# RUN chmod +x /consumer/consumerbinary
+RUN chmod +x /consumer/consumerbinary
 
 # Set the command to run the binary
-CMD ["sh", "-c", "sleep infinity"]
+# CMD ["sh", "-c", "sleep infinity"]
+CMD ["./consumerbinary"]
