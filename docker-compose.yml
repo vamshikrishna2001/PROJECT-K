@@ -25,7 +25,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
-    command: ["/bin/sh", "-c", "sleep infinity"]
+        #command: ["/bin/sh", "-c", "sleep infinity"]
+    command: ["python3", "llm.py"]
     depends_on:
       - kafka
     networks:

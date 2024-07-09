@@ -8,7 +8,11 @@ WORKDIR /app
 RUN pip install kafka-python transformers torch
 
 # Copy the Kafka consumer script into the container
-COPY pytorchService/llm.py .
+COPY pytorchService/ .
+
+RUN python3 LLMinit.py
 
 # Set the command to run the Kafka consumer script
-CMD ["sleep infinity"]
+#CMD ["sleep infinity"]
+
+CMD ["python3", "llm.py"]

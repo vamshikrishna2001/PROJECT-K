@@ -1,15 +1,20 @@
-from kafka import KafkaConsumer
+from kafka import KafkaConsumer, KafkaProducer
 from transformers import BertTokenizer, BertForSequenceClassification
 import torch
 
 # Define the Kafka consumer
 consumer = KafkaConsumer(
-    'your_kafka_topic',      # Replace with your topic name
+    'processedMessages',      # Replace with your topic name
     bootstrap_servers=['project-k_kafka_1:9093'],  # Replace with your Kafka server address
     auto_offset_reset='earliest',
     enable_auto_commit=True,
-    group_id='your_group_id',  # Replace with your group id
     consumer_timeout_ms=1000
+)
+
+# Define the Kafka producer
+producer = KafkaProducer(
+    bootstrap_servers=['project-k_kafka_1:9093'],  # Replace with your Kafka server address
+    value_serializer=lambda v: str(v).encode('utf-8')
 )
 
 # Initialize the tokenizer and model
@@ -24,7 +29,7 @@ def classify_sentiment(messages, tokenizer, model):
     return predictions
 
 # Function to process messages and classify sentiment
-def process_messages(consumer, tokenizer, model, num_messages=32):
+def process_messages(consumer, producer, tokenizer, model, num_messages=32):
     messages = []
     
     for message in consumer:
@@ -35,17 +40,24 @@ def process_messages(consumer, tokenizer, model, num_messages=32):
     if messages:
         # Perform sentiment analysis
         predictions = classify_sentiment(messages, tokenizer, model)
+        
+        # Publish the classified messages to the new Kafka topic
+        for i, prediction in enumerate(predictions):
+            result = {'message': messages[i], 'sentiment': prediction.item()}
+            producer.send('classifiedMessages', value=result)
+        
         return predictions
     else:
         return []
 
 # Consume and process messages
-predictions = process_messages(consumer, tokenizer, model, num_messages=32)
+predictions = process_messages(consumer, producer, tokenizer, model, num_messages=32)
 
 # Output the predictions
 for i, prediction in enumerate(predictions):
     print(f"Message {i+1}: {prediction.item()}")
 
-# Close the consumer
+# Close the consumer and producer
 consumer.close()
+producer.close()
 
