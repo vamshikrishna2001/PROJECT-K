@@ -7,7 +7,8 @@ consumer = KafkaConsumer(
     'processedMessages',      # Replace with your topic name
     bootstrap_servers=['project-k_kafka_1:9093'],  # Replace with your Kafka server address
     auto_offset_reset='earliest',
-    enable_auto_commit=True
+    enable_auto_commit=True,
+    consumer_timeout_ms=1000
 )
 
 # Define the Kafka producer
