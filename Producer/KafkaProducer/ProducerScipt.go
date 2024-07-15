@@ -21,9 +21,10 @@ func KafkaProducer() {
 	// Set up the Sarama configuration
 	config := sarama.NewConfig()
 	config.Producer.Return.Successes = true
+	broker := []string{"kafka1:9093", "kafka2:9093"}
 
 	// Create a new Sarama producer
-	producer, err := sarama.NewSyncProducer([]string{"project-k_kafka_1:9093"}, config)
+	producer, err := sarama.NewSyncProducer(broker, config)
 	if err != nil {
 		log.Fatalf("Failed to create producer: %s", err)
 	}

@@ -5,7 +5,7 @@ import torch
 # Define the Kafka consumer
 consumer = KafkaConsumer(
     'processedMessages',      # Replace with your topic name
-    bootstrap_servers=['project-k_kafka_1:9093'],  # Replace with your Kafka server address
+    bootstrap_servers=['kafka1:9093', 'kafka2:9093'],  # Replace with your Kafka server address
     auto_offset_reset='earliest',
     enable_auto_commit=True,
     consumer_timeout_ms=1000
@@ -13,7 +13,7 @@ consumer = KafkaConsumer(
 
 # Define the Kafka producer
 producer = KafkaProducer(
-    bootstrap_servers=['project-k_kafka_1:9093'],  # Replace with your Kafka server address
+    bootstrap_servers=['kafka1:9093', 'kafka2:9093'],  # Replace with your Kafka server address
     value_serializer=lambda v: str(v).encode('utf-8')
 )
 

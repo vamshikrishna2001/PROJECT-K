@@ -11,7 +11,7 @@ import (
 
 func KafkaConsumer() {
 	// Kafka broker address and topic names
-	broker := "project-k_kafka_1:9093" // Adjust to your Kafka broker address
+	broker := []string{"kafka1:9093", "kafka2:9093"}
 	consumerTopic := "rawMessages"
 	producerTopic := "processedMessages"
 
@@ -20,7 +20,7 @@ func KafkaConsumer() {
 	config.Consumer.Return.Errors = true
 
 	// Create Kafka consumer
-	consumer, err := sarama.NewConsumer([]string{broker}, config)
+	consumer, err := sarama.NewConsumer(broker, config)
 	if err != nil {
 		log.Fatalf("Error creating consumer: %v", err)
 	}
@@ -35,7 +35,7 @@ func KafkaConsumer() {
 	producerConfig.Producer.Return.Successes = true
 
 	// Create Kafka producer
-	producer, err := sarama.NewSyncProducer([]string{broker}, producerConfig)
+	producer, err := sarama.NewSyncProducer(broker, producerConfig)
 	if err != nil {
 		log.Fatalf("Error creating producer: %v", err)
 	}
