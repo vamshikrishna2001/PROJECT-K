@@ -8,7 +8,6 @@ spark = SparkSession.builder \
     .appName("KafkaSparkConsumer") \
     .config('spark.jars.packages', 'org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1') \
     .config("spark.sql.streaming.kafka.bootstrap.servers", "kafka:9093") \
-    .config("spark.hadoop.fs.defaultFS", "hdfs://hadoop-namenode:8020") \
     .master("spark://spark-master:7077") \
     .getOrCreate()
 print('after creating spark job')

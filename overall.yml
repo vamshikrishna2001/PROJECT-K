@@ -2,6 +2,7 @@ version: '3'
 
 services:
   zookeeper:
+    container_name: zk
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
@@ -9,6 +10,7 @@ services:
       - kafka-net
 
   kafka:
+    container_name: kfk
     image: wurstmeister/kafka:latest
     ports:
       - "9092:9092"
@@ -24,7 +26,9 @@ services:
       - kafka-net
 
   spark-master:
-    image: bitnami/spark:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.spark-master  # Use custom Dockerfile for spark-master
     container_name: spark-master
     environment:
       - SPARK_MODE=master
@@ -39,6 +43,7 @@ services:
       - ./pyspark:/opt/spark-apps
     networks:
       - kafka-net
+
 
   spark-worker:
     image: bitnami/spark:latest
@@ -57,48 +62,74 @@ services:
     networks:
       - kafka-net
 
-  namenode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
-      #environment:
-      #- CLUSTER_NAME=test
+  hadoop-namenode:
+    #   image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+    build:
+      context: .
+      dockerfile: Dockerfile.hdfs-namenode 
+    container_name: hadoop-namenode
+    environment:
+      - CLUSTER_NAME=test
     ports:
-      - "9870:9870"
-      - "9000:9000"
+      - "50070:50070"
       - "8020:8020"
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
-
-    environment:
-      - CLUSTER_NAME=test
-      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
-
     networks:
-      #- hadoop-net
       - kafka-net
 
-  datanode:
-    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+  hadoop-datanode:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
+    container_name: hadoop-datanode
     environment:
       - CLUSTER_NAME=test
-      - CORE_CONF_hadoop_hdfs_NAMENODE_RPC_ADDRESS=namenode:8020
-      - CORE_CONF_fs_defaultFS=hdfs://namenode:8020
+      - CORE_CONF_fs_defaultFS=hdfs://hadoop-namenode:8020
+      - CORE_CONF_hadoop_http_staticuser_user=root
+      - HDFS_CONF_dfs_replication=1
     ports:
-      - "9864:9864"
+      - "50075:50075"
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     networks:
-      #- hadoop-net
       - kafka-net
     depends_on:
-      - namenode
+      - hadoop-namenode
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    environment:
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+    command: server /data
+    networks:
+      - kafka-net
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - kafka-net
 
 volumes:
+  postgres_data:
+  minio_data:
   hadoop_namenode:
   hadoop_datanode:
 
 networks:
   kafka-net:
-    driver: bridge
-  hadoop-net:
     driver: bridge
 
