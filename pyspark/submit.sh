@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python3 kafka_consumer.py 
+python3 ingestion.py 

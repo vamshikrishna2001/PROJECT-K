@@ -23,6 +23,7 @@ df = spark.readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", "kafka:9093") \
     .option("subscribe", "sample_topic") \
+    .option("failOnDataLoss", "false") \
     .option("startingOffsets", "earliest") \
     .option("kafkaConsumer.pollTimeoutMs", "120000") \
     .load()
