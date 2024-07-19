@@ -4,11 +4,20 @@ FROM pytorch/pytorch:latest
 # Set the working directory in the container
 WORKDIR /app
 
+RUN apt update 
+
+#RUN apt install -y  vim && && apt-get install -y netcat
+
+#RUN '/bin/sh -c apt install -y  vim && && apt-get install -y netcat'
+RUN apt-get update && apt-get install -y vim netcat
+
 # Install additional dependencies
 RUN pip install kafka-python transformers torch
 
 # Copy the Kafka consumer script into the container
 COPY pytorchService/ .
+
+RUN chmod +x startup.sh
 
 RUN python3 LLMinit.py
 

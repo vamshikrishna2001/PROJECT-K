@@ -1,0 +1,14 @@
+FROM bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
+
+# Copy the initialization script
+COPY hdfsInit.sh /usr/local/bin/init-hdfs.sh
+
+# Run the script as the root user
+USER root
+RUN chmod +x /usr/local/bin/init-hdfs.sh
+
+# Switch back to hadoop user
+
+# Run the init-hdfs.sh script on startup
+#ENTRYPOINT ["sh", "-c", "/usr/local/bin/init-hdfs.sh"]
+CMD ["sh", "-c", "/usr/local/bin/init-hdfs.sh && /entrypoint.sh"]

@@ -2,6 +2,9 @@ FROM bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
 
 # Run chmod 777 /
 USER root
+
+RUN ["sh", "-c", "sleep 30"]
+
 RUN  groupadd -r spark && useradd -r -g spark spark
 RUN hdfs dfs -mkdir -p /user/spark/kafka-data
 RUN hdfs dfs -chown -R spark:spark /user/spark

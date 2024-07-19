@@ -29,35 +29,34 @@ def classify_sentiment(messages, tokenizer, model):
     return predictions
 
 # Function to process messages and classify sentiment
-def process_messages(consumer, producer, tokenizer, model, num_messages=32):
-    messages = []
-    
-    for message in consumer:
-        messages.append(message.value.decode('utf-8'))
-        if len(messages) == num_messages:
-            break
-    
-    if messages:
-        # Perform sentiment analysis
-        predictions = classify_sentiment(messages, tokenizer, model)
+def process_messages(consumer, producer, tokenizer, model):
+    while True:
+        try:
+            messages = []
+            
+            for message in consumer:
+                messages.append(message.value.decode('utf-8'))
+                if len(messages) >= 32:  # You can adjust this batch size as needed
+                    break
+            
+            if messages:
+                # Perform sentiment analysis
+                predictions = classify_sentiment(messages, tokenizer, model)
+                
+                # Publish the classified messages to the new Kafka topic
+                for i, prediction in enumerate(predictions):
+                    result = {'message': messages[i], 'sentiment': prediction.item()}
+                    producer.send('classifiedMessages', value=result)
+                
+                print(f"Processed {len(messages)} messages and classified their sentiments.")
         
-        # Publish the classified messages to the new Kafka topic
-        for i, prediction in enumerate(predictions):
-            result = {'message': messages[i], 'sentiment': prediction.item()}
-            producer.send('classifiedMessages', value=result)
-        
-        return predictions
-    else:
-        return []
+        except Exception as e:
+            print(f"Error occurred: {e}")
 
-# Consume and process messages
-predictions = process_messages(consumer, producer, tokenizer, model, num_messages=32)
+# Start processing messages
+process_messages(consumer, producer, tokenizer, model)
 
-# Output the predictions
-for i, prediction in enumerate(predictions):
-    print(f"Message {i+1}: {prediction.item()}")
-
-# Close the consumer and producer
+# Close the consumer and producer gracefully
 consumer.close()
 producer.close()
 

@@ -9,7 +9,7 @@ services:
     depends_on:
       - kafka
     networks:
-      - kafka-network
+      - kafka_network
 
   consumer:
     build:
@@ -19,23 +19,18 @@ services:
     depends_on:
       - kafka
     networks:
-      - kafka-network
-    restart: always
-
+      - kafka_network
 
   pytorch:
     build:
       context: .
       dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
         #command: ["/bin/sh", "-c", "sleep infinity"]
-        #command: ["python3", "llm.py"]
-    command: ["./startup.sh"]
+    command: ["python3", "llm.py"]
     depends_on:
       - kafka
     networks:
-      - kafka-network
-    restart: always
-
+      - kafka_network
 
   kafka:
     image: wurstmeister/kafka:latest
@@ -50,14 +45,14 @@ services:
     depends_on:
       - zookeeper
     networks:
-      - kafka-network
+      - kafka_network
 
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
     networks:
-      - kafka-network
+      - kafka_network
 
   spark-master:
     build:
