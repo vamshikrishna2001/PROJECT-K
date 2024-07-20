@@ -61,7 +61,7 @@ services:
 
   spark-master:
     build:
-      context: .
+      context: ./sparkmaster
       dockerfile: Dockerfile.spark-master  # Use custom Dockerfile for spark-master
     container_name: spark-master
     environment:
@@ -99,7 +99,7 @@ services:
   hadoop-namenode:
     #   image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
     build:
-      context: .
+      context: ./hdfs
       dockerfile: Dockerfile.hdfs-namenode
     container_name: hadoop-namenode
     environment:
