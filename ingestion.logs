@@ -417,3 +417,76 @@ after creating spark job
 24/07/20 16:12:22 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
 24/07/20 16:12:32 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
 24/07/20 16:12:42 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/20 16:12:52 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/20 16:13:02 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+^CERROR:root:Exception while sending command.
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedReader name=3>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+24/07/20 16:13:11 INFO SparkContext: Invoking stop() from shutdown hook
+24/07/20 16:13:11 INFO SparkContext: SparkContext is stopping with exitCode 0.
+ERROR:root:Exception while sending command.
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 511, in send_command
+    answer = smart_decode(self.stream.readline()[:-1])
+                          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/bitnami/python/lib/python3.11/socket.py", line 706, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/context.py", line 381, in signal_handler
+    self.cancelAllJobs()
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/context.py", line 2446, in cancelAllJobs
+    self._jsc.sc().cancelAllJobs()
+    ^^^^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+    return_value = get_return_value(
+                   ^^^^^^^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+    return f(*a, **kw)
+           ^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+    raise Py4JError(
+py4j.protocol.Py4JError: An error occurred while calling o23.sc
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1038, in send_command
+    response = connection.send_command(command)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/clientserver.py", line 539, in send_command
+    raise Py4JNetworkError(
+py4j.protocol.Py4JNetworkError: Error while sending or receiving
+Traceback (most recent call last):
+  File "/opt/spark-apps/ingestion.py", line 43, in <module>
+    query.awaitTermination()
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/sql/streaming/query.py", line 221, in awaitTermination
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/java_gateway.py", line 1322, in __call__
+  File "/opt/bitnami/spark/python/lib/pyspark.zip/pyspark/errors/exceptions/captured.py", line 179, in deco
+  File "/opt/bitnami/spark/python/lib/py4j-0.10.9.7-src.zip/py4j/protocol.py", line 334, in get_return_value
+py4j.protocol.Py4JError: An error occurred while calling o62.awaitTermination
+24/07/20 16:13:11 INFO SparkUI: Stopped Spark web UI at http://f29f783329e2:4040
+24/07/20 16:13:11 INFO StandaloneSchedulerBackend: Shutting down all executors
+24/07/20 16:13:11 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Asking each executor to shut down
+24/07/20 16:13:11 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+24/07/20 16:13:11 INFO MemoryStore: MemoryStore cleared
+24/07/20 16:13:11 INFO BlockManager: BlockManager stopped
+24/07/20 16:13:11 INFO BlockManagerMaster: BlockManagerMaster stopped
+24/07/20 16:13:11 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+24/07/20 16:13:11 INFO SparkContext: Successfully stopped SparkContext
+24/07/20 16:13:11 INFO ShutdownHookManager: Shutdown hook called
+24/07/20 16:13:11 INFO ShutdownHookManager: Deleting directory /tmp/spark-a83dbccf-81a7-4684-9437-02ac3a0f1161
+24/07/20 16:13:11 INFO ShutdownHookManager: Deleting directory /tmp/spark-c343c4c1-c761-4a36-9bcf-923a1c1be07e
+24/07/20 16:13:11 INFO ShutdownHookManager: Deleting directory /tmp/spark-c343c4c1-c761-4a36-9bcf-923a1c1be07e/pyspark-cb019bb8-eec7-47ee-abf9-37a2c028e2ae
