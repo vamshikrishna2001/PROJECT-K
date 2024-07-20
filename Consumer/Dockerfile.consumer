@@ -1,20 +1,20 @@
 FROM golang:1.22-alpine
 
-WORKDIR /producer
+WORKDIR /consumer
 
 # Copy go.mod and go.sum files first to leverage Docker cache
 # COPY go.mod go.sum ./
 
-COPY ./Producer .
+COPY . .
 
 # Download dependencies
 RUN go mod download
 
-RUN go build -o producerbinary main.go
+RUN go build -o consumerbinary main.go
 
 # # Ensure the binary has executable permissions
-RUN chmod +x /producer/producerbinary
+RUN chmod +x /consumer/consumerbinary
 
 # Set the command to run the binary
 # CMD ["sh", "-c", "sleep infinity"]
-CMD ["./producerbinary"]
+CMD ["./consumerbinary"]

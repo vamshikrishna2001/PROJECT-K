@@ -2,7 +2,7 @@ version: '3'
 services:
   producer:
     build:
-      context: .
+      context: ./Producer
       dockerfile: Dockerfile.producer
         # command: ["sh", "-c", "sleep infinity"]
     command: ["./producerbinary"]
@@ -13,7 +13,7 @@ services:
 
   consumer:
     build:
-      context: .
+      context: ./Consumer
       dockerfile: Dockerfile.consumer  # Use the Dockerfile for the consumer
     command: ["./consumerbinary"]     
     depends_on:
@@ -25,7 +25,7 @@ services:
 
   pytorch:
     build:
-      context: .
+      context: ./pytorchService
       dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
         #command: ["/bin/sh", "-c", "sleep infinity"]
         #command: ["python3", "llm.py"]
