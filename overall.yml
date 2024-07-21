@@ -1,43 +1,16 @@
 version: '3'
+
 services:
-  producer:
-    build:
-      context: ./Producer
-      dockerfile: Dockerfile.producer
-        # command: ["sh", "-c", "sleep infinity"]
-    command: ["./producerbinary"]
-    depends_on:
-      - kafka
+  zookeeper:
+    container_name: zk
+    image: wurstmeister/zookeeper:latest
+    ports:
+      - "2181:2181"
     networks:
-      - kafka-network
-
-  consumer:
-    build:
-      context: ./Consumer
-      dockerfile: Dockerfile.consumer  # Use the Dockerfile for the consumer
-    command: ["./consumerbinary"]     
-    depends_on:
-      - kafka
-    networks:
-      - kafka-network
-    restart: always
-
-
-  pytorch:
-    build:
-      context: ./pytorchService
-      dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
-        #command: ["/bin/sh", "-c", "sleep infinity"]
-        #command: ["python3", "llm.py"]
-    command: ["./startup.sh"]
-    depends_on:
-      - kafka
-    networks:
-      - kafka-network
-    restart: always
-
+      - kafka-net
 
   kafka:
+    container_name: kfk
     image: wurstmeister/kafka:latest
     ports:
       - "9092:9092"
@@ -50,18 +23,11 @@ services:
     depends_on:
       - zookeeper
     networks:
-      - kafka-network
-
-  zookeeper:
-    image: wurstmeister/zookeeper:latest
-    ports:
-      - "2181:2181"
-    networks:
-      - kafka-network
+      - kafka-net
 
   spark-master:
     build:
-      context: ./sparkmaster
+      context: .
       dockerfile: Dockerfile.spark-master  # Use custom Dockerfile for spark-master
     container_name: spark-master
     environment:
@@ -76,7 +42,7 @@ services:
     volumes:
       - ./pyspark:/opt/spark-apps
     networks:
-      - kafka-network
+      - kafka-net
 
 
   spark-worker:
@@ -94,13 +60,13 @@ services:
     volumes:
       - ./pyspark:/opt/spark-apps
     networks:
-      - kafka-network
+      - kafka-net
 
   hadoop-namenode:
     #   image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
     build:
-      context: ./hdfs
-      dockerfile: Dockerfile.hdfs-namenode
+      context: .
+      dockerfile: Dockerfile.hdfs-namenode 
     container_name: hadoop-namenode
     environment:
       - CLUSTER_NAME=test
@@ -110,7 +76,7 @@ services:
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
     networks:
-      - kafka-network
+      - kafka-net
 
   hadoop-datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
@@ -125,7 +91,7 @@ services:
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     networks:
-      - kafka-network
+      - kafka-net
     depends_on:
       - hadoop-namenode
 
@@ -141,7 +107,7 @@ services:
       - "9000:9000"
     command: server /data
     networks:
-      - kafka-network
+      - kafka-net
 
   postgres:
     image: postgres:latest
@@ -155,7 +121,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - kafka-network
+      - kafka-net
 
 volumes:
   postgres_data:
@@ -164,5 +130,6 @@ volumes:
   hadoop_datanode:
 
 networks:
-  kafka-network:
+  kafka-net:
     driver: bridge
+

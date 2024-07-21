@@ -1,7 +1,11 @@
 # PROJECT-K
 
-step 
-1.run docker-compose up -d 
-2.run docker-compose up -d producer consumer 
+
+run 
+1. ./StartScript.sh in PROJECT-k --> it sends 10 messages 
+
+2. run docker-compose up -d to send more 10 messages to kafka 
+
+
 
 https://www.kaggle.com/datasets/kazanova/sentiment140?resource=download download this folder and place it in producer directory

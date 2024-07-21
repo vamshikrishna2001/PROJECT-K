@@ -1,0 +1,11 @@
+FROM bitnami/spark:latest
+
+# Update packages and install required tools
+USER root
+RUN apt-get update && \
+    apt-get install -y vim netcat-traditional iputils-ping && \
+    pip3 install py4j
+
+# Switch back to the spark user
+#USER spark
+
