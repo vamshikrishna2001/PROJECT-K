@@ -19,6 +19,8 @@ COPY . .
 
 RUN chmod +x startup.sh
 
+RUN chmod +x startup.sh
+
 RUN python3 LLMinit.py
 
 # Set the command to run the Kafka consumer script
