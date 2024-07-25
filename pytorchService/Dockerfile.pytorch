@@ -15,7 +15,9 @@ RUN apt-get update && apt-get install -y vim netcat
 RUN pip install kafka-python transformers torch
 
 # Copy the Kafka consumer script into the container
-COPY pytorchService/ .
+COPY . .
+
+RUN chmod +x startup.sh
 
 RUN chmod +x startup.sh
 

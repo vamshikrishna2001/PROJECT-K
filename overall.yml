@@ -1,76 +1,33 @@
 version: '3'
+
 services:
-  producer:
-    container_name: producer
-    build:
-      context: ./Producer
-      dockerfile: Dockerfile.producer
-        # command: ["sh", "-c", "sleep infinity"]
-    command: ["./producerbinary"]
-    depends_on:
-      - kafka1
-      - kafka2
-    networks:
-      - kafka-network
-
-  consumer:
-    container_name: consumer
-    build:
-      context: ./Consumer
-      dockerfile: Dockerfile.consumer  # Use the Dockerfile for the consumer
-    command: ["./consumerbinary"]     
-    depends_on:
-      - kafka1 
-      - kafka2
-    networks:
-      - kafka-network
-    restart: always
-
-
-  pytorch:
-    container_name: pytorch
-    build:
-      context: ./pytorchService
-      dockerfile: Dockerfile.pytorch  # Define your Dockerfile for PyTorch service
-        #command: ["/bin/sh", "-c", "sleep infinity"]
-        #command: ["python3", "llm.py"]
-    command: ["./startup.sh"]
-    depends_on:
-      - kafka1
-      - kafka2
-    networks:
-      - kafka-network
-    restart: always
-
-
-  kafka:
-    image: wurstmeister/kafka:latest
-    container_name: kafka2
-    ports:
-      - "9095:9093"  # Different external port for kafka2
-    environment:
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka2:9093,OUTSIDE://localhost:9095
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
-      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_BROKER_ID: 2  # Unique broker ID for kafka2
-    depends_on:
-      - zookeeper
-    networks:
-      - kafka-network
-
   zookeeper:
-    container_name: zookeeper
+    container_name: zk
     image: wurstmeister/zookeeper:latest
     ports:
       - "2181:2181"
     networks:
-      - kafka-network
+      - kafka-net
+
+  kafka:
+    container_name: kfk
+    image: wurstmeister/kafka:latest
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9093,OUTSIDE://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9093,OUTSIDE://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+    networks:
+      - kafka-net
 
   spark-master:
     build:
-      context: ./sparkmaster
+      context: .
       dockerfile: Dockerfile.spark-master  # Use custom Dockerfile for spark-master
     container_name: spark-master
     environment:
@@ -85,7 +42,7 @@ services:
     volumes:
       - ./pyspark:/opt/spark-apps
     networks:
-      - kafka-network
+      - kafka-net
 
 
   spark-worker:
@@ -103,13 +60,13 @@ services:
     volumes:
       - ./pyspark:/opt/spark-apps
     networks:
-      - kafka-network
+      - kafka-net
 
   hadoop-namenode:
     #   image: bde2020/hadoop-namenode:2.0.0-hadoop2.7.4-java8
     build:
-      context: ./hdfs
-      dockerfile: Dockerfile.hdfs-namenode
+      context: .
+      dockerfile: Dockerfile.hdfs-namenode 
     container_name: hadoop-namenode
     environment:
       - CLUSTER_NAME=test
@@ -119,7 +76,7 @@ services:
     volumes:
       - hadoop_namenode:/hadoop/dfs/name
     networks:
-      - kafka-network
+      - kafka-net
 
   hadoop-datanode:
     image: bde2020/hadoop-datanode:2.0.0-hadoop2.7.4-java8
@@ -134,7 +91,7 @@ services:
     volumes:
       - hadoop_datanode:/hadoop/dfs/data
     networks:
-      - kafka-network
+      - kafka-net
     depends_on:
       - hadoop-namenode
 
@@ -150,7 +107,7 @@ services:
       - "9000:9000"
     command: server /data
     networks:
-      - kafka-network
+      - kafka-net
 
   postgres:
     image: postgres:latest
@@ -164,7 +121,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - kafka-network
+      - kafka-net
 
 volumes:
   postgres_data:
@@ -173,5 +130,6 @@ volumes:
   hadoop_datanode:
 
 networks:
-  kafka-network:
+  kafka-net:
     driver: bridge
+

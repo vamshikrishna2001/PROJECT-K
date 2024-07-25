@@ -1,0 +1,293 @@
+:: loading settings :: url = jar:file:/opt/bitnami/spark/jars/ivy-2.5.1.jar!/org/apache/ivy/core/settings/ivysettings.xml
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+org.apache.spark#spark-sql-kafka-0-10_2.12 added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent-015b92f6-5ee1-45c9-8985-ca0ce2051227;1.0
+	confs: [default]
+	found org.apache.spark#spark-sql-kafka-0-10_2.12;3.3.0 in central
+	found org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.3.0 in central
+	found org.apache.kafka#kafka-clients;2.8.1 in central
+	found org.lz4#lz4-java;1.8.0 in central
+	found org.xerial.snappy#snappy-java;1.1.8.4 in central
+	found org.slf4j#slf4j-api;1.7.32 in central
+	found org.apache.hadoop#hadoop-client-runtime;3.3.2 in central
+	found org.spark-project.spark#unused;1.0.0 in central
+	found org.apache.hadoop#hadoop-client-api;3.3.2 in central
+	found commons-logging#commons-logging;1.1.3 in central
+	found com.google.code.findbugs#jsr305;3.0.0 in central
+	found org.apache.commons#commons-pool2;2.11.1 in central
+:: resolution report :: resolve 1361ms :: artifacts dl 53ms
+	:: modules in use:
+	com.google.code.findbugs#jsr305;3.0.0 from central in [default]
+	commons-logging#commons-logging;1.1.3 from central in [default]
+	org.apache.commons#commons-pool2;2.11.1 from central in [default]
+	org.apache.hadoop#hadoop-client-api;3.3.2 from central in [default]
+	org.apache.hadoop#hadoop-client-runtime;3.3.2 from central in [default]
+	org.apache.kafka#kafka-clients;2.8.1 from central in [default]
+	org.apache.spark#spark-sql-kafka-0-10_2.12;3.3.0 from central in [default]
+	org.apache.spark#spark-token-provider-kafka-0-10_2.12;3.3.0 from central in [default]
+	org.lz4#lz4-java;1.8.0 from central in [default]
+	org.slf4j#slf4j-api;1.7.32 from central in [default]
+	org.spark-project.spark#unused;1.0.0 from central in [default]
+	org.xerial.snappy#snappy-java;1.1.8.4 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   12  |   0   |   0   |   0   ||   12  |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent-015b92f6-5ee1-45c9-8985-ca0ce2051227
+	confs: [default]
+	0 artifacts copied, 12 already retrieved (0kB/32ms)
+24/07/21 15:46:50 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+creating spark job
+24/07/21 15:46:52 INFO SparkContext: Running Spark version 3.5.1
+24/07/21 15:46:52 INFO SparkContext: OS info Linux, 6.1.85+, amd64
+24/07/21 15:46:52 INFO SparkContext: Java version 17.0.11
+24/07/21 15:46:52 INFO ResourceUtils: ==============================================================
+24/07/21 15:46:52 INFO ResourceUtils: No custom resources configured for spark.driver.
+24/07/21 15:46:52 INFO ResourceUtils: ==============================================================
+24/07/21 15:46:52 INFO SparkContext: Submitted application: KafkaSparkConsumer
+24/07/21 15:46:52 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+24/07/21 15:46:52 INFO ResourceProfile: Limiting resource is cpu
+24/07/21 15:46:52 INFO ResourceProfileManager: Added ResourceProfile id: 0
+24/07/21 15:46:52 INFO SecurityManager: Changing view acls to: root,spark
+24/07/21 15:46:52 INFO SecurityManager: Changing modify acls to: root,spark
+24/07/21 15:46:52 INFO SecurityManager: Changing view acls groups to: 
+24/07/21 15:46:52 INFO SecurityManager: Changing modify acls groups to: 
+24/07/21 15:46:52 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root, spark; groups with view permissions: EMPTY; users with modify permissions: root, spark; groups with modify permissions: EMPTY
+24/07/21 15:46:53 INFO Utils: Successfully started service 'sparkDriver' on port 37269.
+24/07/21 15:46:53 INFO SparkEnv: Registering MapOutputTracker
+24/07/21 15:46:53 INFO SparkEnv: Registering BlockManagerMaster
+24/07/21 15:46:53 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/07/21 15:46:53 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/07/21 15:46:53 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+24/07/21 15:46:53 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-dad9fa59-8f14-462a-895f-1984908612cf
+24/07/21 15:46:53 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+24/07/21 15:46:53 INFO SparkEnv: Registering OutputCommitCoordinator
+24/07/21 15:46:54 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+24/07/21 15:46:54 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar at spark://01022bf9588c:37269/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar at spark://01022bf9588c:37269/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-2.8.1.jar at spark://01022bf9588c:37269/jars/org.apache.kafka_kafka-clients-2.8.1.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at spark://01022bf9588c:37269/jars/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at spark://01022bf9588c:37269/jars/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar at spark://01022bf9588c:37269/jars/org.spark-project.spark_unused-1.0.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar at spark://01022bf9588c:37269/jars/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at spark://01022bf9588c:37269/jars/org.lz4_lz4-java-1.8.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.8.4.jar at spark://01022bf9588c:37269/jars/org.xerial.snappy_snappy-java-1.1.8.4.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.32.jar at spark://01022bf9588c:37269/jars/org.slf4j_slf4j-api-1.7.32.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.2.jar at spark://01022bf9588c:37269/jars/org.apache.hadoop_hadoop-client-api-3.3.2.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added JAR file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at spark://01022bf9588c:37269/jars/commons-logging_commons-logging-1.1.3.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar at spark://01022bf9588c:37269/files/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.spark_spark-sql-kafka-0-10_2.12-3.3.0.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar at spark://01022bf9588c:37269/files/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.spark_spark-token-provider-kafka-0-10_2.12-3.3.0.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.kafka_kafka-clients-2.8.1.jar at spark://01022bf9588c:37269/files/org.apache.kafka_kafka-clients-2.8.1.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.kafka_kafka-clients-2.8.1.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.kafka_kafka-clients-2.8.1.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar at spark://01022bf9588c:37269/files/com.google.code.findbugs_jsr305-3.0.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/com.google.code.findbugs_jsr305-3.0.0.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/com.google.code.findbugs_jsr305-3.0.0.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar at spark://01022bf9588c:37269/files/org.apache.commons_commons-pool2-2.11.1.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.commons_commons-pool2-2.11.1.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.commons_commons-pool2-2.11.1.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar at spark://01022bf9588c:37269/files/org.spark-project.spark_unused-1.0.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.spark-project.spark_unused-1.0.0.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.spark-project.spark_unused-1.0.0.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar at spark://01022bf9588c:37269/files/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.hadoop_hadoop-client-runtime-3.3.2.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar at spark://01022bf9588c:37269/files/org.lz4_lz4-java-1.8.0.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.lz4_lz4-java-1.8.0.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.lz4_lz4-java-1.8.0.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.8.4.jar at spark://01022bf9588c:37269/files/org.xerial.snappy_snappy-java-1.1.8.4.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.xerial.snappy_snappy-java-1.1.8.4.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.xerial.snappy_snappy-java-1.1.8.4.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.32.jar at spark://01022bf9588c:37269/files/org.slf4j_slf4j-api-1.7.32.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.slf4j_slf4j-api-1.7.32.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.slf4j_slf4j-api-1.7.32.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.2.jar at spark://01022bf9588c:37269/files/org.apache.hadoop_hadoop-client-api-3.3.2.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/org.apache.hadoop_hadoop-client-api-3.3.2.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/org.apache.hadoop_hadoop-client-api-3.3.2.jar
+24/07/21 15:46:54 INFO SparkContext: Added file file:///root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar at spark://01022bf9588c:37269/files/commons-logging_commons-logging-1.1.3.jar with timestamp 1721576812697
+24/07/21 15:46:54 INFO Utils: Copying /root/.ivy2/jars/commons-logging_commons-logging-1.1.3.jar to /tmp/spark-5fddba1c-4595-4a6d-88cc-4600b478008e/userFiles-a5102477-cc24-48dc-8889-31ecc114ebde/commons-logging_commons-logging-1.1.3.jar
+24/07/21 15:46:54 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+24/07/21 15:46:54 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.2:7077 after 51 ms (0 ms spent in bootstraps)
+24/07/21 15:46:55 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20240721154655-0001
+24/07/21 15:46:55 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20240721154655-0001/0 on worker-20240721154001-172.18.0.7-36329 (172.18.0.7:36329) with 1 core(s)
+24/07/21 15:46:55 INFO StandaloneSchedulerBackend: Granted executor ID app-20240721154655-0001/0 on hostPort 172.18.0.7:36329 with 1 core(s), 1024.0 MiB RAM
+24/07/21 15:46:55 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 35861.
+24/07/21 15:46:55 INFO NettyBlockTransferService: Server created on 01022bf9588c:35861
+24/07/21 15:46:55 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/07/21 15:46:55 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 01022bf9588c, 35861, None)
+24/07/21 15:46:55 INFO BlockManagerMasterEndpoint: Registering block manager 01022bf9588c:35861 with 434.4 MiB RAM, BlockManagerId(driver, 01022bf9588c, 35861, None)
+24/07/21 15:46:55 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 01022bf9588c, 35861, None)
+24/07/21 15:46:55 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 01022bf9588c, 35861, None)
+24/07/21 15:46:55 INFO StandaloneAppClient$ClientEndpoint: Executor updated: app-20240721154655-0001/0 is now RUNNING
+24/07/21 15:46:56 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+after creating spark job
+24/07/21 15:46:57 INFO SharedState: Setting hive.metastore.warehouse.dir ('null') to the value of spark.sql.warehouse.dir.
+24/07/21 15:46:57 INFO SharedState: Warehouse path is 'file:/opt/bitnami/spark/spark-warehouse'.
+24/07/21 15:47:05 INFO StateStoreCoordinatorRef: Registered StateStoreCoordinator endpoint
+24/07/21 15:47:06 INFO ResolveWriteToStream: Checkpoint root hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka resolved to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka.
+24/07/21 15:47:06 INFO StandaloneSchedulerBackend$StandaloneDriverEndpoint: Registered executor NettyRpcEndpointRef(spark-client://Executor) (172.18.0.7:42690) with ID 0,  ResourceProfileId 0
+24/07/21 15:47:06 WARN ResolveWriteToStream: spark.sql.adaptive.enabled is not supported in streaming DataFrames/Datasets and will be disabled.
+24/07/21 15:47:06 INFO BlockManagerMasterEndpoint: Registering block manager 172.18.0.7:33603 with 434.4 MiB RAM, BlockManagerId(0, 172.18.0.7, 33603, None)
+24/07/21 15:47:07 INFO MicroBatchExecution: Starting [id = 6b221d68-0ff1-469c-97db-d3a76a6a5540, runId = 7d0a62fb-2691-43ad-bfb2-95384c641d7f]. Use hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka to store the query checkpoint.
+24/07/21 15:47:07 INFO MicroBatchExecution: Reading table [org.apache.spark.sql.kafka010.KafkaSourceProvider$KafkaTable@2abc0b4] from DataSourceV2 named 'kafka' [org.apache.spark.sql.kafka010.KafkaSourceProvider@5dd10391]
+24/07/21 15:47:07 INFO OffsetSeqLog: BatchIds found from listing: 
+24/07/21 15:47:07 INFO OffsetSeqLog: BatchIds found from listing: 
+24/07/21 15:47:07 INFO MicroBatchExecution: Starting new streaming query.
+24/07/21 15:47:07 INFO MicroBatchExecution: Stream started from {}
+24/07/21 15:47:08 INFO AdminClientConfig: AdminClientConfig values: 
+	bootstrap.servers = [kafka:9093]
+	client.dns.lookup = use_all_dns_ips
+	client.id = 
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+24/07/21 15:47:08 WARN AdminClientConfig: The configuration 'key.deserializer' was supplied but isn't a known config.
+24/07/21 15:47:08 WARN AdminClientConfig: The configuration 'value.deserializer' was supplied but isn't a known config.
+24/07/21 15:47:08 WARN AdminClientConfig: The configuration 'enable.auto.commit' was supplied but isn't a known config.
+24/07/21 15:47:08 WARN AdminClientConfig: The configuration 'max.poll.records' was supplied but isn't a known config.
+24/07/21 15:47:08 WARN AdminClientConfig: The configuration 'auto.offset.reset' was supplied but isn't a known config.
+24/07/21 15:47:08 INFO AppInfoParser: Kafka version: 2.8.1
+24/07/21 15:47:08 INFO AppInfoParser: Kafka commitId: 839b886f9b732b15
+24/07/21 15:47:08 INFO AppInfoParser: Kafka startTimeMs: 1721576828771
+24/07/21 15:47:09 INFO CheckpointFileManager: Writing atomically to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/sources/0/0 using temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/sources/0/.0.bd26fa49-fb82-403b-9b2e-6c539ab0ba55.tmp
+24/07/21 15:47:09 INFO CheckpointFileManager: Renamed temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/sources/0/.0.bd26fa49-fb82-403b-9b2e-6c539ab0ba55.tmp to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/sources/0/0
+24/07/21 15:47:09 INFO KafkaMicroBatchStream: Initial offsets: {"classifiedMessages":{"0":0}}
+24/07/21 15:47:09 INFO CheckpointFileManager: Writing atomically to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/offsets/0 using temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/offsets/.0.1f1676f7-b812-4a4b-941d-615beaa74b08.tmp
+24/07/21 15:47:09 INFO CheckpointFileManager: Renamed temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/offsets/.0.1f1676f7-b812-4a4b-941d-615beaa74b08.tmp to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/offsets/0
+24/07/21 15:47:09 INFO MicroBatchExecution: Committed offsets for batch 0. Metadata OffsetSeqMetadata(0,1721576829770,Map(spark.sql.streaming.stateStore.providerClass -> org.apache.spark.sql.execution.streaming.state.HDFSBackedStateStoreProvider, spark.sql.streaming.join.stateFormatVersion -> 2, spark.sql.streaming.stateStore.compression.codec -> lz4, spark.sql.streaming.stateStore.rocksdb.formatVersion -> 5, spark.sql.streaming.statefulOperator.useStrictDistribution -> true, spark.sql.streaming.flatMapGroupsWithState.stateFormatVersion -> 2, spark.sql.streaming.multipleWatermarkPolicy -> min, spark.sql.streaming.aggregation.stateFormatVersion -> 2, spark.sql.shuffle.partitions -> 200))
+24/07/21 15:47:10 INFO KafkaOffsetReaderAdmin: Partitions added: Map()
+24/07/21 15:47:10 INFO KafkaOffsetReaderAdmin: Partitions added: Map()
+24/07/21 15:47:10 INFO KafkaOffsetReaderAdmin: Partitions added: Map()
+24/07/21 15:47:10 INFO KafkaOffsetReaderAdmin: Partitions added: Map()
+24/07/21 15:47:10 INFO FileStreamSinkLog: BatchIds found from listing: 
+24/07/21 15:47:11 INFO ParquetUtils: Using default output committer for Parquet: org.apache.parquet.hadoop.ParquetOutputCommitter
+24/07/21 15:47:11 INFO CodeGenerator: Code generated in 458.804099 ms
+24/07/21 15:47:12 INFO SparkContext: Starting job: start at NativeMethodAccessorImpl.java:0
+24/07/21 15:47:12 INFO DAGScheduler: Got job 0 (start at NativeMethodAccessorImpl.java:0) with 1 output partitions
+24/07/21 15:47:12 INFO DAGScheduler: Final stage: ResultStage 0 (start at NativeMethodAccessorImpl.java:0)
+24/07/21 15:47:12 INFO DAGScheduler: Parents of final stage: List()
+24/07/21 15:47:12 INFO DAGScheduler: Missing parents: List()
+24/07/21 15:47:12 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[3] at start at NativeMethodAccessorImpl.java:0), which has no missing parents
+24/07/21 15:47:12 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 232.7 KiB, free 434.2 MiB)
+24/07/21 15:47:12 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 83.9 KiB, free 434.1 MiB)
+24/07/21 15:47:12 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 01022bf9588c:35861 (size: 83.9 KiB, free: 434.3 MiB)
+24/07/21 15:47:12 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1585
+24/07/21 15:47:12 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[3] at start at NativeMethodAccessorImpl.java:0) (first 15 tasks are for partitions Vector(0))
+24/07/21 15:47:12 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks resource profile 0
+24/07/21 15:47:12 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0) (172.18.0.7, executor 0, partition 0, PROCESS_LOCAL, 10918 bytes) 
+24/07/21 15:47:13 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 172.18.0.7:33603 (size: 83.9 KiB, free: 434.3 MiB)
+24/07/21 15:47:19 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 7174 ms on 172.18.0.7 (executor 0) (1/1)
+24/07/21 15:47:19 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+24/07/21 15:47:19 INFO DAGScheduler: ResultStage 0 (start at NativeMethodAccessorImpl.java:0) finished in 7.613 s
+24/07/21 15:47:19 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+24/07/21 15:47:19 INFO TaskSchedulerImpl: Killing all running tasks in stage 0: Stage finished
+24/07/21 15:47:19 INFO DAGScheduler: Job 0 finished: start at NativeMethodAccessorImpl.java:0, took 7.710834 s
+24/07/21 15:47:19 INFO FileFormatWriter: Start to commit write Job d1790202-1c04-492e-96e5-2a218e1f1b7a.
+24/07/21 15:47:19 INFO FileStreamSinkLog: Set the compact interval to 10 [defaultCompactInterval: 10]
+24/07/21 15:47:19 INFO CheckpointFileManager: Writing atomically to hdfs://hadoop-namenode:8020/user/spark/kafka-data/_spark_metadata/0 using temp file hdfs://hadoop-namenode:8020/user/spark/kafka-data/_spark_metadata/.0.b127858a-2d06-42a4-bf15-3bf18ee3d0fc.tmp
+24/07/21 15:47:19 INFO CheckpointFileManager: Renamed temp file hdfs://hadoop-namenode:8020/user/spark/kafka-data/_spark_metadata/.0.b127858a-2d06-42a4-bf15-3bf18ee3d0fc.tmp to hdfs://hadoop-namenode:8020/user/spark/kafka-data/_spark_metadata/0
+24/07/21 15:47:19 INFO ManifestFileCommitProtocol: Committed batch 0
+24/07/21 15:47:19 INFO FileFormatWriter: Write Job d1790202-1c04-492e-96e5-2a218e1f1b7a committed. Elapsed time: 75 ms.
+24/07/21 15:47:19 INFO FileFormatWriter: Finished processing stats for write job d1790202-1c04-492e-96e5-2a218e1f1b7a.
+24/07/21 15:47:20 INFO CheckpointFileManager: Writing atomically to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/commits/0 using temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/commits/.0.845d4d84-ca6f-48a1-badd-28df5191e7c6.tmp
+24/07/21 15:47:20 INFO CheckpointFileManager: Renamed temp file hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/commits/.0.845d4d84-ca6f-48a1-badd-28df5191e7c6.tmp to hdfs://hadoop-namenode:8020/user/spark/checkpoints/kafka/commits/0
+24/07/21 15:47:20 INFO MicroBatchExecution: Streaming query made progress: {
+  "id" : "6b221d68-0ff1-469c-97db-d3a76a6a5540",
+  "runId" : "7d0a62fb-2691-43ad-bfb2-95384c641d7f",
+  "name" : null,
+  "timestamp" : "2024-07-21T15:47:07.211Z",
+  "batchId" : 0,
+  "numInputRows" : 20,
+  "inputRowsPerSecond" : 0.0,
+  "processedRowsPerSecond" : 1.5527950310559004,
+  "durationMs" : {
+    "addBatch" : 9191,
+    "commitOffsets" : 71,
+    "getBatch" : 53,
+    "latestOffset" : 2477,
+    "queryPlanning" : 889,
+    "triggerExecution" : 12879,
+    "walCommit" : 86
+  },
+  "stateOperators" : [ ],
+  "sources" : [ {
+    "description" : "KafkaV2[Subscribe[classifiedMessages]]",
+    "startOffset" : null,
+    "endOffset" : {
+      "classifiedMessages" : {
+        "0" : 20
+      }
+    },
+    "latestOffset" : {
+      "classifiedMessages" : {
+        "0" : 20
+      }
+    },
+    "numInputRows" : 20,
+    "inputRowsPerSecond" : 0.0,
+    "processedRowsPerSecond" : 1.5527950310559004,
+    "metrics" : {
+      "avgOffsetsBehindLatest" : "0.0",
+      "maxOffsetsBehindLatest" : "0",
+      "minOffsetsBehindLatest" : "0"
+    }
+  } ],
+  "sink" : {
+    "description" : "FileSink[hdfs://hadoop-namenode:8020/user/spark/kafka-data]",
+    "numOutputRows" : -1
+  }
+}
+24/07/21 15:47:30 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/21 15:47:31 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 01022bf9588c:35861 in memory (size: 83.9 KiB, free: 434.4 MiB)
+24/07/21 15:47:31 INFO BlockManagerInfo: Removed broadcast_0_piece0 on 172.18.0.7:33603 in memory (size: 83.9 KiB, free: 434.4 MiB)
+24/07/21 15:47:40 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/21 15:47:50 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/21 15:48:00 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/21 15:48:10 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
+24/07/21 15:48:20 INFO MicroBatchExecution: Streaming query has been idle and waiting for new data more than 10000 ms.
