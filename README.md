@@ -1,7 +1,7 @@
 ############ PROJECT-K ###############
 
+RUN THESE FOLLOWING COMMANDS TO GET STARTED 
 
-run 
 1. ./StartScript.sh in PROJECT-k --> it sends 10 messages 
 
 2. run docker-compose up -d to send more 10 messages to kafka 
