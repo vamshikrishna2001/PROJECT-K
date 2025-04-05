@@ -6,6 +6,6 @@ run
 
 2. run docker-compose up -d to send more 10 messages to kafka 
 
-3. check results in hdfs 
+3. check results in hdfs (command mentioned in one of the scripts)
 
 https://www.kaggle.com/datasets/kazanova/sentiment140?resource=download download this folder and place it in producer directory
