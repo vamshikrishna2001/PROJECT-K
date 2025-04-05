@@ -9,3 +9,5 @@ run
 3. check results in hdfs (command mentioned in one of the scripts)
 
 Use this link (https://www.kaggle.com/datasets/kazanova/sentiment140?resource=download) to download this folder and place it in producer directory
+
+Thank you
