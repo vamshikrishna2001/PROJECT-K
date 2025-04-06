@@ -1,6 +1,6 @@
 ############ PROJECT-K ###############
 
-Deep learning pipeline to stream sentiment in real time 
+Deep learning pipeline to stream sentiments in real time 
 
 RUN THESE FOLLOWING COMMANDS TO GET STARTED 😁
 
