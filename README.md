@@ -1,7 +1,6 @@
 ############ PROJECT-K ###############
 
-Deep learning pipeline to stream sentiment in real time 
-
+Deep learning pipeline to stream sentiment in real time 🤖
 RUN THESE FOLLOWING COMMANDS TO GET STARTED 😁
 
 Producer --> Kafka (entry topic) --> Consumer (Pytorch consumer for sentiment classification) --> Kafka (sentiment topic) --> Spark cluster --> HDFS cluster
