@@ -1,6 +1,6 @@
 ############ PROJECT-K ###############
 
-RUN THESE FOLLOWING COMMANDS TO GET STARTED 
+RUN THESE FOLLOWING COMMANDS TO GET STARTED 😁
 
 1. ./StartScript.sh in PROJECT-k --> it sends 10 messages 
 
