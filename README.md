@@ -1,5 +1,9 @@
 ############ PROJECT-K ###############
 
+Deep learning pipeline to stream sentiment in real time 
+
+producer --> kafka (entry topic) --> consumer (Pytorch consumer for sentiment classification) --> kafka (sentiment topic) --> Spark cluster --> HDFS cluster
+
 RUN THESE FOLLOWING COMMANDS TO GET STARTED 😁
 
 1. ./StartScript.sh in PROJECT-k --> it sends 10 messages 
