@@ -2,8 +2,6 @@
 
 Deep learning pipeline to stream sentiment in real time 
 
-producer --> kafka (entry topic) --> consumer (Pytorch consumer for sentiment classification) --> kafka (sentiment topic) --> Spark cluster --> HDFS cluster
-
 RUN THESE FOLLOWING COMMANDS TO GET STARTED 😁
 
 Producer --> Kafka (entry topic) --> Consumer (Pytorch consumer for sentiment classification) --> Kafka (sentiment topic) --> Spark cluster --> HDFS cluster
